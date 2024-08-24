@@ -178,7 +178,9 @@ export function renderOrderSummary() {
 
       quantityLabel.innerHTML = newQuantity;
 
-      updateCartQuantity();
+      renderCheckoutHeader();
+      renderOrderSummary();
+      renderPaymentSummary();
     });
   });
 
