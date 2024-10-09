@@ -1,10 +1,35 @@
 import { renderCheckoutHeader } from "./checkout/checkoutHeader.js";
 import { renderOrderSummary } from "./checkout/orderSummary.js";
 import { renderPaymentSummary } from "./checkout/paymentSummary.js";
-import { loadProducts } from "../data/products.js";
+import { loadProducts, loadProductsFetch } from "../data/products.js";
 
+async function loadPage() {
+  try {
+    await loadProductsFetch();
+  } catch (error) {
+    console.log("Unexpected error. Please try again later.");
+  }
+
+  renderCheckoutHeader();
+  renderOrderSummary();
+  renderPaymentSummary();
+}
+
+loadPage();
+
+/*
+loadProductsFetch().then(() => {
+  renderCheckoutHeader();
+  renderOrderSummary();
+  renderPaymentSummary();
+});
+*/
+
+/*
 loadProducts(() => {
   renderCheckoutHeader();
   renderOrderSummary();
   renderPaymentSummary();
 });
+
+*/
